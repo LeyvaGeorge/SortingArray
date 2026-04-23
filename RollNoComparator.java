@@ -1,6 +1,10 @@
 import java.util.Comparator;
 
 public class RollNoComparator implements Comparator<Student>{
+    /*  
+     * This method will compare the roll numbers of two students and return a negative integer, zero,
+     * or a positive integer as the first argument is less than, equal to, or greater than the second.
+    */
     @Override
     public int compare(Student s1, Student s2) {
         return Integer.compare(s1.getRollNo(), s2.getRollNo());
