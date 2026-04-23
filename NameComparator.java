@@ -1,10 +1,15 @@
 import java.util.Comparator;
 
 public class NameComparator implements Comparator<Student> {
-    @Override
+    /* 
+     *This method will compare the names of two students and return a negative integer, zero,
+     * or a positive integer as the first argument is less than, equal to, or greater than the second.
+    */
+   @Override
     public int compare(Student s1, Student s2) {
         return s1.getName().compareTo(s2.getName());
     }
+    
     /*
      * This method will sort through the array starting from the beggining and will find the min
      * value and swap it with the current element 'i' and will repeat the process until the end 
