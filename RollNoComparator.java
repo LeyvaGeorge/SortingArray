@@ -1,4 +1,5 @@
 import java.util.Comparator;
+import java.util.ArrayList;
 
 public class RollNoComparator implements Comparator<Student>{
     /*  
@@ -14,17 +15,17 @@ public class RollNoComparator implements Comparator<Student>{
      * This method will sort through the array using Merge Sort.
      * It will divide the array into two halves, sort them recursively and then merge the sorted halves.
     */
-    public static void mergeSort(Student[] stuArr) {
-        if (stuArr.length < 2) {
+    public static void mergeSort(ArrayList<Student> stuArr) {
+        if (stuArr.size() < 2) {
             return; // Base case: array is already sorted
         }
-        int mid = stuArr.length / 2;
-        Student[] left = new Student[mid];
-        Student[] right = new Student[stuArr.length - mid];
+        int mid = stuArr.size() / 2;
+        ArrayList<Student> left = new ArrayList<>(mid);
+        ArrayList<Student> right = new ArrayList<>(stuArr.size() - mid);
 
         // Split the array into two halves
         System.arraycopy(stuArr, 0, left, 0, mid);
-        System.arraycopy(stuArr, mid, right, 0, stuArr.length - mid);
+        System.arraycopy(stuArr, mid, right, 0, stuArr.size() - mid);
 
         // Recursively sort both halves
         mergeSort(left);
@@ -34,20 +35,20 @@ public class RollNoComparator implements Comparator<Student>{
         merge(stuArr, left, right);
     }
 
-    public static void merge(Student[] stuArr, Student[] left, Student[] right) {
+    public static void merge(ArrayList<Student> stuArr, ArrayList<Student> left, ArrayList<Student> right) {
         int leftPos = 0, rightPos = 0, mergePos = 0;    //Position for Left, Right and Merged array
-        while (leftPos < left.length && rightPos < right.length) {
-            if (left[leftPos].getRollNo() <= right[rightPos].getRollNo()) {
-                stuArr[mergePos++] = left[leftPos++];
+        while (leftPos < left.size() && rightPos < right.size()) {
+            if (left.get(leftPos).getRollNo() <= right.get(rightPos).getRollNo()) {
+                stuArr.set(mergePos++, left.get(leftPos++));
             } else {
-                stuArr[mergePos++] = right[rightPos++];
+                stuArr.set(mergePos++, right.get(rightPos++));
             }
         }
-        while (leftPos < left.length) {
-            stuArr[mergePos++] = left[leftPos++];
+        while (leftPos < left.size()) {
+            stuArr.set(mergePos++, left.get(leftPos++));
         }
-        while (rightPos < right.length) {
-            stuArr[mergePos++] = right[rightPos++];
+        while (rightPos < right.size()) {
+            stuArr.set(mergePos++, right.get(rightPos++));
         }
     }
 }
